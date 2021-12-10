@@ -62,6 +62,7 @@ pub fn gen_goal(size: usize) -> Vec<(usize, usize, usize)> {
 pub fn parse_lines<'a>(content: &'a String) -> Vec<&'a str> {
     content
         .lines()
+        .filter(|line| line.len() > 0)
         .filter_map(|line| match line.split_once("#") {
             None => Some(line),
             Some((line_content, _)) => {
