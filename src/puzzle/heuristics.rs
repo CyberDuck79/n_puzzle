@@ -8,7 +8,7 @@ pub enum Heuristics {
 }
 
 impl Heuristics {
-    pub fn compute(&self, grid: &Vec<u8>, goal: &Vec<(usize, usize, usize)>, size: usize) -> u32 {
+    pub fn compute(&self, grid: &[u8], goal: &[(usize, usize, usize)], size: usize) -> u32 {
         match self {
             Heuristics::Hamming => Heuristics::hamming_h(grid, goal),
             Heuristics::Manhattan => Heuristics::manhattan_h(grid, goal, size),
@@ -19,7 +19,7 @@ impl Heuristics {
         }
     }
 
-    fn hamming_h(grid: &Vec<u8>, goal: &Vec<(usize, usize, usize)>) -> u32 {
+    fn hamming_h(grid: &[u8], goal: &[(usize, usize, usize)]) -> u32 {
         grid.iter()
             .enumerate()
             .map(|(index, piece)| {
@@ -37,7 +37,7 @@ impl Heuristics {
             .sum()
     }
 
-    fn manhattan_h(grid: &Vec<u8>, goal: &Vec<(usize, usize, usize)>, size: usize) -> u32 {
+    fn manhattan_h(grid: &[u8], goal: &[(usize, usize, usize)], size: usize) -> u32 {
         grid.iter()
             .enumerate()
             .map(|(index, piece)| {
@@ -63,7 +63,7 @@ impl Heuristics {
             .sum()
     }
 
-    fn linear_conflicts(grid: &Vec<u8>, goal: &Vec<(usize, usize, usize)>, size: usize) -> u32 {
+    fn linear_conflicts(grid: &[u8], goal: &[(usize, usize, usize)], size: usize) -> u32 {
         let mut linear_conflicts = 0;
         for y in 0..size {
             let pieces_in_good_line: Vec<(usize, usize)> = (0..size)

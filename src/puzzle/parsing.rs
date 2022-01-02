@@ -59,14 +59,14 @@ pub fn gen_goal(size: usize) -> Vec<(usize, usize, usize)> {
     goal
 }
 
-pub fn parse_lines<'a>(content: &'a String) -> Vec<&'a str> {
+pub fn parse_lines(content: &str) -> Vec<&str> {
     content
         .lines()
-        .filter(|line| line.len() > 0)
+        .filter(|line| !line.is_empty())
         .filter_map(|line| match line.split_once("#") {
             None => Some(line),
             Some((line_content, _)) => {
-                if line_content.len() > 0 {
+                if !line_content.is_empty() {
                     Some(line_content)
                 } else {
                     None
@@ -82,11 +82,11 @@ pub fn parse_size(lines: &mut Vec<&str>) -> Result<usize, &'static str> {
             lines.remove(0);
             Ok(val)
         }
-        Err(_) => return Err("convert size failed"),
+        Err(_) => Err("convert size failed"),
     }
 }
 
-pub fn parse_grid(lines: &Vec<&str>, size: usize) -> Result<Vec<u8>, &'static str> {
+pub fn parse_grid(lines: &[&str], size: usize) -> Result<Vec<u8>, &'static str> {
     if lines.len() != size {
         return Err("Not correct col size");
     }

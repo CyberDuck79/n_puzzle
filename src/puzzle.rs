@@ -93,7 +93,7 @@ impl Puzzle {
         time_complexity: usize,
         max_space_complexity: usize,
     ) -> String {
-        let move_number = self.path(&end_node);
+        let move_number = self.path(end_node);
         format!(
             "Solution found with {} moves\nTime complexity: {}\nMaximum space complexity: {}",
             move_number, time_complexity, max_space_complexity

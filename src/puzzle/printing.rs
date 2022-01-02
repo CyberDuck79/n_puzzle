@@ -3,7 +3,7 @@ use std::io;
 use std::thread;
 use std::time::Duration;
 
-pub fn print_grid(grid: &Vec<u8>, size: usize) {
+pub fn print_grid(grid: &[u8], size: usize) {
     for y in 0..size {
         for x in 0..size {
             if x == 0 {
@@ -22,14 +22,14 @@ pub fn print_grid(grid: &Vec<u8>, size: usize) {
     }
 }
 
-pub fn print_grids(grids: &Vec<&Vec<u8>>, size: usize) {
+pub fn print_grids(grids: &[&Vec<u8>], size: usize) {
     for grid in grids.iter().rev() {
         print_grid(grid, size);
-        println!("");
+        println!();
     }
 }
 
-pub fn print_state(state: &Vec<u8>, g: u32, h: u32, size: usize) {
+pub fn print_state(state: &[u8], g: u32, h: u32, size: usize) {
     print_grid(state, size);
     println!("g: {} | f: {}", g, g + h);
 }
