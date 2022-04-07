@@ -63,7 +63,7 @@ pub fn parse_lines(content: &str) -> Vec<&str> {
     content
         .lines()
         .filter(|line| !line.is_empty())
-        .filter_map(|line| match line.split_once("#") {
+        .filter_map(|line| match line.split_once('#') {
             None => Some(line),
             Some((line_content, _)) => {
                 if !line_content.is_empty() {
